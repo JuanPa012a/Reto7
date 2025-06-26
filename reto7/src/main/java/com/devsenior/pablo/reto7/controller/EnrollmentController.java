@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -59,5 +60,14 @@ public class EnrollmentController {
     public EnrollmentDto updateEnrollment(@Valid @RequestBody EnrollmentDto enrollment, @PathVariable Long id) {
         return service.update(id, enrollment);
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/estado")
+    public EnrollmentDto postMethodName(@RequestParam Long id,
+                                 @RequestParam String status) {
+        return service.changeStatus(id, status);
+    }
+    
 
 }

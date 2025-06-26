@@ -26,8 +26,8 @@ public record EnrollmentDto(
     public EnrollmentDto{
         if(students == null ) students = new ArrayList<>();
         if(courses == null) courses = new ArrayList<>();
-        status = Status.ACTIVO.name();
-        startDate = LocalDateTime.now();
+        if(status == null) status = Status.ACTIVO.name();
+        if(startDate == null) startDate = LocalDateTime.now();
     }
     
 }

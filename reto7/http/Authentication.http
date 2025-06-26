@@ -1,8 +1,19 @@
-###
 POST http://localhost:8080/register?rol=ROLE_ADMIN
 Content-Type: application/json
 
 {
-    "username":"juan",
-    "password":"123"
+    "username":"pablo",
+    "password":"admin123"
 }
+
+###
+
+# 2. Autenticar usuario administrador
+POST http://localhost:8080/authenticate
+Content-Type: application/json
+
+{
+    "username":"pablo",
+    "password":"admin123"
+}
+

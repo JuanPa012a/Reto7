@@ -1,15 +1,16 @@
 ###
 GET http://localhost:8080/api/professor
-
+#Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6InBhYmxvIiwiaWF0IjoxNzUwOTA0NDU4LCJleHAiOjE3NTA5OTA4NTh9.xuqvxoa2pS28bVANFW03F7CS09hAasTkik26ciCEDy5fX_-oTiWaHwiN26Wi0Cza
 
 ###
 POST http://localhost:8080/api/professor
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6InBhYmxvIiwiaWF0IjoxNzUwOTA0MTQwLCJleHAiOjE3NTA5OTA1NDB9._MQbVd7FG_XZ-ruAioBy7NuhQ6fCtcQMMVjIP1LkCtgEpxg4Qgw-JgG255hDi9Dc
 Content-Type: application/json
 
 {
-    "firstName":"Rufino",
-    "lastName":"Cuellar",
-    "email":"manolo123@gmail.com",
+    "firstName":"Ramiro",
+    "lastName":"Falla",
+    "email":"ramiroo@gmail.com",
     "departament" : "Caqueta"
 }
 ###

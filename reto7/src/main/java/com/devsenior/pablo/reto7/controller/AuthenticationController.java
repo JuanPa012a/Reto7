@@ -18,12 +18,15 @@ import lombok.AllArgsConstructor;
 @RestController
 @AllArgsConstructor
 public class AuthenticationController {
+    
     private final AuthenticationServiceImpl service;
+    
+
+
+
     @PostMapping("/authenticate")
-    public AuthenticationResponse postMethodName(@Valid @RequestBody AuthenticationRequest entity) {
-        //TODO: process POST request
-        
-        return null;
+    public AuthenticationResponse login(@Valid @RequestBody AuthenticationRequest request) throws Exception {
+        return service.login(request);
     }
 
     @PostMapping("/register")

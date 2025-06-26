@@ -37,7 +37,7 @@ public class ProfessorController {
     
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     @GetMapping("{id}")
-    public ProfessorDto getProfessorById(@PathVariable Long id) {
+    public ProfessorDto getProfessorById(@PathVariable("id") Long id) {
         return service.getById(id);
     }
 
@@ -49,13 +49,13 @@ public class ProfessorController {
     }
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("{id}")
-    public ProfessorDto deleteProfessorById(@PathVariable Long id) {
+    public ProfessorDto deleteProfessorById(@PathVariable("id") Long id) {
         return service.delete(id);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("{id}")
-    public ProfessorDto updateProfessor(@Valid @RequestBody ProfessorDto professor, @PathVariable Long id) {
+    public ProfessorDto updateProfessor(@Valid @RequestBody ProfessorDto professor, @PathVariable("id") Long id) {
         return service.update(id, professor);
     }
 

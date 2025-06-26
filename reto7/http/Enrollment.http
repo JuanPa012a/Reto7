@@ -1,13 +1,15 @@
 ###
-GET http://localhost:8080/api/enrollment
+GET http://localhost:8080/api/enrollment/1
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6InBhYmxvIiwiaWF0IjoxNzUwOTA0MTQwLCJleHAiOjE3NTA5OTA1NDB9._MQbVd7FG_XZ-ruAioBy7NuhQ6fCtcQMMVjIP1LkCtgEpxg4Qgw-JgG255hDi9Dc
 
 
 ###
 POST http://localhost:8080/api/enrollment
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6InBhYmxvIiwiaWF0IjoxNzUwOTA0MTQwLCJleHAiOjE3NTA5OTA1NDB9._MQbVd7FG_XZ-ruAioBy7NuhQ6fCtcQMMVjIP1LkCtgEpxg4Qgw-JgG255hDi9Dc
 Content-Type: application/json
 
 {
-    "studentId":2,
+    "studentId":6,
     "courseId":1
 }
 ###
@@ -15,11 +17,15 @@ DELETE http://localhost:8080/api/enrollment/1
 
 ###
 PUT http://localhost:8080/api/enrollment/1
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6InBhYmxvIiwiaWF0IjoxNzUwOTA0MTQwLCJleHAiOjE3NTA5OTA1NDB9._MQbVd7FG_XZ-ruAioBy7NuhQ6fCtcQMMVjIP1LkCtgEpxg4Qgw-JgG255hDi9Dc
 Content-Type: application/json
 
 {
-    "firstName":"Juan",
-    "lastName":"Morales Artunduaga",
-    "email":"1034776660@gmail.com",
-    "phone":"3138176076"
+    "studentId":6,
+    "courseId":1
 }
+
+###
+PUT http://localhost:8080/api/enrollment/estado?id=2&status=COMPLETaDO
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6InBhYmxvIiwiaWF0IjoxNzUwOTA0MTQwLCJleHAiOjE3NTA5OTA1NDB9._MQbVd7FG_XZ-ruAioBy7NuhQ6fCtcQMMVjIP1LkCtgEpxg4Qgw-JgG255hDi9Dc
+

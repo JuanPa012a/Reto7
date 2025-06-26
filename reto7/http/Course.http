@@ -1,6 +1,6 @@
 ###
-GET http://localhost:8080/api/course
-#Authorization: Basic anVhbjoxMjM=
+GET http://localhost:8080/api/course/1
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6InBhYmxvIiwiaWF0IjoxNzUwOTA0MTQwLCJleHAiOjE3NTA5OTA1NDB9._MQbVd7FG_XZ-ruAioBy7NuhQ6fCtcQMMVjIP1LkCtgEpxg4Qgw-JgG255hDi9Dc
 
 ###
 POST http://localhost:8080/api/course

@@ -1,17 +1,18 @@
 ###
-GET http://localhost:8080/api/student
+GET http://localhost:8080/api/student/6
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6InBhYmxvIiwiaWF0IjoxNzUwOTA0MTQwLCJleHAiOjE3NTA5OTA1NDB9._MQbVd7FG_XZ-ruAioBy7NuhQ6fCtcQMMVjIP1LkCtgEpxg4Qgw-JgG255hDi9Dc
 
 
 ###
 POST http://localhost:8080/api/student
-Authorization: Basic anVhbjoxMjM=
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6InBhYmxvIiwiaWF0IjoxNzUwOTA0MTQwLCJleHAiOjE3NTA5OTA1NDB9._MQbVd7FG_XZ-ruAioBy7NuhQ6fCtcQMMVjIP1LkCtgEpxg4Qgw-JgG255hDi9Dc
 Content-Type: application/json
 
 {
-    "firstName":"Pedro",
-    "lastName":"Geronimo",
-    "email":"pedroypablo@gmail.com",
-    "phone":"3216549870"
+    "firstName":"Luis",
+    "lastName":"Galindo",
+    "email":"otroCorreo@gmail.com",
+    "phone":"3216259847"
 }
 ###
 DELETE http://localhost:8080/api/student/1

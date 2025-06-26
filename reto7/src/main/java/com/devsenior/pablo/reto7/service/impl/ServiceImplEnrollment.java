@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import com.devsenior.pablo.reto7.Mapper.EnrollmentMapper;
 import com.devsenior.pablo.reto7.exception.CourseNotFoundException;
 import com.devsenior.pablo.reto7.exception.EnrollmentNotFoundException;
+import com.devsenior.pablo.reto7.exception.StatusNotFoundException;
 import com.devsenior.pablo.reto7.exception.StudentNotFoundException;
+import com.devsenior.pablo.reto7.model.Status;
 import com.devsenior.pablo.reto7.model.dto.EnrollmentDto;
 import com.devsenior.pablo.reto7.model.entities.Course;
 import com.devsenior.pablo.reto7.model.entities.Student;
@@ -109,6 +111,30 @@ public class ServiceImplEnrollment implements ServiceEnrollment{
             new StudentNotFoundException("No se encuentra el estudiante con el ID: "+
             studentId));
         return student;
+    }
+
+    @Override
+    public EnrollmentDto changeStatus(Long id, String status) {
+        var enrollmentDto = getById(id);
+        var enrollmentEntity = mapper.toEntity(enrollmentDto);
+        var statusUpdated = selectStatus(status);
+        enrollmentEntity.setStatus(statusUpdated.name());
+        enrollmentEntity.setId(id);
+        enrollmentEntity = repository.save(enrollmentEntity);
+        
+        
+        return mapper.toDto(enrollmentEntity);
+    }
+
+    private Status selectStatus(String name){
+        for (Status statu : Status.values()) {
+            if(statu.name().equalsIgnoreCase(name)){
+                return statu;
+            }
+            
+        }
+        throw new StatusNotFoundException("No existe el estado: "+ name);
+       
     }
     
 }
