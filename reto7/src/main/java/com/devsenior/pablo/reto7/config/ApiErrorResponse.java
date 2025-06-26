@@ -11,12 +11,12 @@ public class ApiErrorResponse {
     // @JsonFormat asegura que la fecha se serialice a un formato legible por humanos
     // ISO 8601 es el estándar para fechas en APIs REST
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime timestamp;
+    private final LocalDateTime timestamp;
 
-    private Integer status; // Código de estado HTTP numérico (ej: 400, 404)
-    private String error;   // La frase del estado HTTP (ej: "Bad Request", "Not Found")
-    private String message; // Mensaje detallado del error para el cliente
-    private String path;    // La URI de la solicitud que causó el error
+    private final Integer status; // Código de estado HTTP numérico (ej: 400, 404)
+    private final String error;   // La frase del estado HTTP (ej: "Bad Request", "Not Found")
+    private final String message; // Mensaje detallado del error para el cliente
+    private final String path;    // La URI de la solicitud que causó el error
 
     // Constructor que inicializa los campos
     public ApiErrorResponse(HttpStatus status, String message, String path) {

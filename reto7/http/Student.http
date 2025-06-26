@@ -1,0 +1,28 @@
+###
+GET http://localhost:8080/api/student
+
+
+###
+POST http://localhost:8080/api/student
+Authorization: Basic anVhbjoxMjM=
+Content-Type: application/json
+
+{
+    "firstName":"Pedro",
+    "lastName":"Geronimo",
+    "email":"pedroypablo@gmail.com",
+    "phone":"3216549870"
+}
+###
+DELETE http://localhost:8080/api/student/1
+
+###
+PUT http://localhost:8080/api/student/1
+Content-Type: application/json
+
+{
+    "firstName":"Juan",
+    "lastName":"Morales Artunduaga",
+    "email":"1034776660@gmail.com",
+    "phone":"3138176076"
+}

@@ -1,0 +1,28 @@
+###
+GET http://localhost:8080/api/course
+#Authorization: Basic anVhbjoxMjM=
+
+###
+POST http://localhost:8080/api/course
+Content-Type: application/json
+
+{
+    "name":"Filosofia ",
+    "description":"Primeros avances filosoficos de la edad griega...",
+    "maxAmount":25,
+    "phone":"3138176076",
+    "professor_id": 2
+}
+###
+DELETE http://localhost:8080/api/course/1
+
+###
+PUT http://localhost:8080/api/course/1
+Content-Type: application/json
+
+{
+    "firstName":"Juan",
+    "lastName":"Morales Artunduaga",
+    "email":"1034776660@gmail.com",
+    "phone":"3138176076"
+}

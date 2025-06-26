@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.devsenior.pablo.reto7.model.entities.Course;
+import com.devsenior.pablo.reto7.model.entities.User;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -17,7 +18,8 @@ public record ProfessorDto(
     String departament,
     @Email(message="El formato del correo no es valido")
     String email,
-    List<Course> courses
+    List<Course> courses,
+    User user
 ) {
     public ProfessorDto{
         if(courses == null) courses = new ArrayList<>();

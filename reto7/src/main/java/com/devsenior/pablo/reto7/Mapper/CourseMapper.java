@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
 
 import com.devsenior.pablo.reto7.model.dto.CourseDto;
 import com.devsenior.pablo.reto7.model.entities.Course;
@@ -12,8 +11,6 @@ import com.devsenior.pablo.reto7.model.entities.Course;
 
 @Mapper(componentModel="spring")
 public interface CourseMapper {
-    
-    CourseMapper INSTANCE = (CourseMapper) Mappers.getMapper(Course.class);
 
     Course toEntity(CourseDto courseDto);
 

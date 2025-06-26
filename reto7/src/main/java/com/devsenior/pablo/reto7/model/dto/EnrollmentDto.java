@@ -7,9 +7,11 @@ import java.util.List;
 import com.devsenior.pablo.reto7.model.Status;
 import com.devsenior.pablo.reto7.model.entities.Course;
 import com.devsenior.pablo.reto7.model.entities.Student;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import jakarta.validation.constraints.NotNull;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public record EnrollmentDto(
     Long id,
     @NotNull(message="El campo del estudiante es obligatorio")

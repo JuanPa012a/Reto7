@@ -14,49 +14,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.devsenior.pablo.reto7.model.dto.StudentDto;
-import com.devsenior.pablo.reto7.service.ServiceStudent;
+import com.devsenior.pablo.reto7.model.dto.EnrollmentDto;
+import com.devsenior.pablo.reto7.service.ServiceEnrollment;
 
 import jakarta.validation.Valid;
 
 
 
 @RestController
-@RequestMapping("/api/student")
-public class StudentController {
-    private final ServiceStudent service;
+@RequestMapping("/api/enrollment")
+public class EnrollmentController {
+    private final ServiceEnrollment service;
 
-    public StudentController(ServiceStudent service){
+    public EnrollmentController(ServiceEnrollment service){
         this.service = service;
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
-    public List<StudentDto> getAllStudents() {
+    public List<EnrollmentDto> getAllEnrollments() {
         return service.getAll();
     }
     
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     @GetMapping("{id}")
-    public StudentDto getStudentById(@PathVariable Long id) {
+    public EnrollmentDto getEnrollmentById(@PathVariable Long id) {
         return service.getById(id);
     }
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
-    public StudentDto saveStudent(@Valid @RequestBody StudentDto student) {
-        return service.add(student);
+    public EnrollmentDto saveEnrollment(@Valid @RequestBody EnrollmentDto enrollment) {
+        return service.add(enrollment);
     }
     
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("{id}")
-    public StudentDto deleteStudentById(@PathVariable Long id) {
+    public EnrollmentDto deleteEnrollmentById(@PathVariable Long id) {
         return service.delete(id);
     }
 
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("{id}")
-    public StudentDto updateStudent(@Valid @RequestBody StudentDto student, @PathVariable Long id) {
-        return service.update(id, student);
+    public EnrollmentDto updateEnrollment(@Valid @RequestBody EnrollmentDto enrollment, @PathVariable Long id) {
+        return service.update(id, enrollment);
     }
 
 }
