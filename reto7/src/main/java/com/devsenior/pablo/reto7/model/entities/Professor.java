@@ -2,6 +2,8 @@ package com.devsenior.pablo.reto7.model.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -36,6 +38,7 @@ public class Professor  {
     private String email;
 
     @OneToMany(mappedBy="professor", fetch=FetchType.LAZY)
+    @JsonBackReference
     private List<Course> courses;
 
     @OneToOne

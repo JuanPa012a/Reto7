@@ -34,5 +34,7 @@ public class AuthenticationController {
         service.saveUser(entity, rol);
         return ResponseEntity.ok().build();
     }
+
+    
     
 }

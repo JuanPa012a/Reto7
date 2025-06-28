@@ -3,6 +3,8 @@ package com.devsenior.pablo.reto7.model.entities;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +30,7 @@ public class Enrollment {
         joinColumns = @JoinColumn(name = "enrollment_id"),
         inverseJoinColumns = @JoinColumn(name = "student_id")
     )
+    @JsonManagedReference
     private List<Student> students;
 
     @ManyToMany
@@ -36,6 +39,7 @@ public class Enrollment {
         joinColumns = @JoinColumn(name = "enrollment_id"),
         inverseJoinColumns = @JoinColumn(name = "course_id")
     )
+    @JsonManagedReference
     private List<Course> courses;
 
     @Column(nullable=false)

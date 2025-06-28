@@ -6,10 +6,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.devsenior.pablo.reto7.exception.JwtExpiredException;
 import com.devsenior.pablo.reto7.util.JwtUtil;
 
 import jakarta.servlet.FilterChain;
@@ -42,25 +44,32 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
                 var token = authHeader.substring(7);
                 log.info("El token es: {}", token);
         
-                var username = jwtUtil.extractUsername(token);
-                log.info("El username es: {}", username);
-        
-                var authentication = SecurityContextHolder.getContext().getAuthentication();
-        
-                if (username != null && authentication == null) {
-                    log.info("Hay que cargar el usuario al contexto");
-                    UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        
-                    if (jwtUtil.validateToken(token, userDetails)) {
-                        var authToken = new UsernamePasswordAuthenticationToken(userDetails, null,
-                                userDetails.getAuthorities());
-        
-                        authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                        SecurityContextHolder.getContext().setAuthentication(authToken);
-                        log.info("Usuario autenticado exitosamente: {}", username);
-                    } else {
-                        log.warn("Token inválido para usuario: {}", username);
+                try {
+                    var username = jwtUtil.extractUsername(token);
+                    log.info("El username es: {}", username);
+            
+                    var authentication = SecurityContextHolder.getContext().getAuthentication();
+            
+                    if (username != null && authentication == null) {
+                        log.info("Hay que cargar el usuario al contexto");
+                        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            
+                        if (jwtUtil.validateToken(token, userDetails)) {
+                            var authToken = new UsernamePasswordAuthenticationToken(userDetails, null,
+                                    userDetails.getAuthorities());
+            
+                            authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                            SecurityContextHolder.getContext().setAuthentication(authToken);
+                            log.info("Usuario autenticado exitosamente: {}", username);
+                        } else {
+                            log.warn("Token inválido para usuario: {}", username);
+                        }
                     }
+                } catch (JwtExpiredException e) {
+                    throw e;
+                } catch (UsernameNotFoundException e) {
+                    // Re-lanzar como JwtExpiredException para consistencia
+                    throw new UsernameNotFoundException("Error procesando usuario: " + e.getMessage());
                 }
         
                 filterChain.doFilter(request, response);

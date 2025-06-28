@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.devsenior.pablo.reto7.exception.CourseNotFoundException;
 import com.devsenior.pablo.reto7.exception.EnrollmentNotFoundException;
+import com.devsenior.pablo.reto7.exception.JwtExpiredException;
 import com.devsenior.pablo.reto7.exception.ProfessorNotFoundException;
 import com.devsenior.pablo.reto7.exception.StatusNotFoundException;
 import com.devsenior.pablo.reto7.exception.StudentNotFoundException;
@@ -71,6 +72,17 @@ public class HandlerException {
 
     @ExceptionHandler(StatusNotFoundException.class)
     public ResponseEntity<ApiErrorResponse> handlerStatusNotFoundException(StatusNotFoundException ex,
+            HttpServletRequest request) {
+                ApiErrorResponse errorResponse = new ApiErrorResponse(
+                    HttpStatus.CONFLICT
+                , ex.getMessage()
+                , request.getRequestURI());
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(JwtExpiredException.class)
+    public ResponseEntity<ApiErrorResponse> handlerJwtExpiredException(JwtExpiredException ex,
             HttpServletRequest request) {
                 ApiErrorResponse errorResponse = new ApiErrorResponse(
                     HttpStatus.CONFLICT

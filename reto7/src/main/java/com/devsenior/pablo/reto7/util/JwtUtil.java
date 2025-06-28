@@ -12,7 +12,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import com.devsenior.pablo.reto7.exception.JwtExpiredException;
+
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -148,12 +151,16 @@ public class JwtUtil {
      * @throws IllegalArgumentException si el token es inválido, está malformado o la firma es incorrecta
      */
     private Claims extractAllClaims(String token) {
+        try{
         return Jwts.parser() // Inicia el constructor del parser de JWT
                 .verifyWith(getSignInKey()) // Establece la clave de firma para la verificación del token
                 .build() // Construye el parser de JWT
                 .parseSignedClaims(token) // Parsea el token JWT y verifica su firma (JSON Web Signature)
                 .getPayload(); // Obtiene el cuerpo (payload) del token como un objeto Claims
-    }
+        }catch(JwtException | IllegalArgumentException ex){
+            throw new JwtExpiredException(ex.getMessage());
+        }
+            }
 
     /**
      * Obtiene la clave secreta para firmar y verificar tokens JWT.

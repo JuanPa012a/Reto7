@@ -2,6 +2,9 @@ package com.devsenior.pablo.reto7.model.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,9 +38,11 @@ public class Course {
 
     @ManyToOne
     @JoinColumn(name="professor_id")
+    @JsonManagedReference
     private Professor professor;
 
     @ManyToMany(mappedBy = "courses")
+    @JsonBackReference
     private List<Enrollment> enrollments;
 
     

@@ -1,6 +1,6 @@
 ###
-GET http://localhost:8080/api/course/1
-Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6InBhYmxvIiwiaWF0IjoxNzUwOTA0MTQwLCJleHAiOjE3NTA5OTA1NDB9._MQbVd7FG_XZ-ruAioBy7NuhQ6fCtcQMMVjIP1LkCtgEpxg4Qgw-JgG255hDi9Dc
+GET http://localhost:8080/api/course
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6InBhYmxvIiwiaWF0IjoxNzUxMTQ0MzEzLCJleHAiOjE3NTEyMzA3MTN9.tNe9r2vH8pJJK5WzKCdw4V3y3nYInWBLwNBfPCwgqd64z3EkLwO8tRW_kpwqKAhn
 
 ###
 POST http://localhost:8080/api/course
