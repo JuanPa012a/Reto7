@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.devsenior.pablo.reto7.model.dto.EnrollmentDto;
 import com.devsenior.pablo.reto7.service.ServiceEnrollment;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 
-
+@Tag(name="Inscripcion", description="Endpoints para la gestion de inscripciones")
 @RestController
 @RequestMapping("/api/enrollment")
 public class EnrollmentController {
@@ -30,18 +32,24 @@ public class EnrollmentController {
     public EnrollmentController(ServiceEnrollment service){
         this.service = service;
     }
-    
+    @Operation(summary="Obtener inscripciones", description="Endpoint para obtener todas las inscripciones. "+
+    "Esta operacion solo la puede realizar el rol administardor")
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public List<EnrollmentDto> getAllEnrollments() {
         return service.getAll();
     }
-    
+
+    @Operation(summary="Obtener inscripcion por ID", description="Endpoint para obtener una inscripcion por ID. "+
+    "Esta operacion solo la puede realizar el rol administardor y usuario")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     @GetMapping("{id}")
     public EnrollmentDto getEnrollmentById(@PathVariable Long id) {
         return service.getById(id);
     }
+
+    @Operation(summary="Guardar Inscripcion", description="Endpoint para guardar una inscripcion. "+
+    "Esta operacion solo la puede realizar el rol administardor")
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
@@ -49,22 +57,28 @@ public class EnrollmentController {
         return service.add(enrollment);
     }
     
+    @Operation(summary="Eliminar una inscripcion", description="Endpoint para eliminar una inscripcion. "+
+    "Esta operacion solo la puede realizar el rol administardor")
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("{id}")
     public EnrollmentDto deleteEnrollmentById(@PathVariable Long id) {
         return service.delete(id);
     }
 
+    @Operation(summary="Actualizar una inscripcion", description="Endpoint para actualizar una inscripcion. "+
+    "Esta operacion solo la puede realizar el rol administardor")
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("{id}")
     public EnrollmentDto updateEnrollment(@Valid @RequestBody EnrollmentDto enrollment, @PathVariable Long id) {
         return service.update(id, enrollment);
     }
 
+    @Operation(summary="Cambiar estado de la Inscripcion", description="Endpoint para cambiar el estado de una inscripcion. "+
+    "Esta operacion solo la puede realizar el rol administardor")
     @ResponseStatus(HttpStatus.OK)
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/estado")
-    public EnrollmentDto postMethodName(@RequestParam Long id,
+    public EnrollmentDto changeStatus(@RequestParam Long id,
                                  @RequestParam String status) {
         return service.changeStatus(id, status);
     }
