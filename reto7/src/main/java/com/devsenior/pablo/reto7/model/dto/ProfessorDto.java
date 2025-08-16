@@ -1,6 +1,6 @@
 package com.devsenior.pablo.reto7.model.dto;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import com.devsenior.pablo.reto7.model.entities.Course;
@@ -22,6 +22,6 @@ public record ProfessorDto(
     User user
 ) {
     public ProfessorDto{
-        if(courses == null) courses = new ArrayList<>();
+        if(courses == null) courses = List.of();
     }
 }

@@ -1,7 +1,6 @@
 package com.devsenior.pablo.reto7.model.dto;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.devsenior.pablo.reto7.model.Status;
@@ -24,8 +23,8 @@ public record EnrollmentDto(
     List<Course> courses
 ) {
     public EnrollmentDto{
-        if(students == null ) students = new ArrayList<>();
-        if(courses == null) courses = new ArrayList<>();
+        if(students == null ) students = List.of();
+        if(courses == null) courses = List.of();
         if(status == null) status = Status.ACTIVO.name();
         if(startDate == null) startDate = LocalDateTime.now();
     }

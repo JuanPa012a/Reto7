@@ -1,6 +1,5 @@
 package com.devsenior.pablo.reto7.model.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.devsenior.pablo.reto7.model.entities.Enrollment;
@@ -24,6 +23,6 @@ public record StudentDto(
     User user
 ) {
    public StudentDto{
-    if(enrollments == null) enrollments = new ArrayList<>();
+    if(enrollments == null) enrollments = List.of();
    } 
 }
